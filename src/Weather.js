@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import './Weather.css';
 
+import axios from 'axios';
+
 function Weather() {
 
      const [location, setLocation] = useState("");
-     const [data, setData] = useState([]);
+     const [weatherData, setWeatherData] = useState([]);
+  
 
-    const url =
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=3cc23a56d72e010f375c8d7ba6450c78`;   
-   
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=3cc23a56d72e010f375c8d7ba6450c78`; 
 
+    const searchLocation = (e) => {
+      e.preventDefault();
+       fetch(url)
+         .then((response) => response.json())
+         .then((data) => {
+           console.log(data.response);
+           setWeatherData(data);
+         })
+         .catch((error) => console.log(error));
+
+    }
     
-    useEffect(() => {
-      fetch(url)
-      .then((response) => {
-        setData(response.data);
-        console.log(response.data)
-      })
-      .catch((error) => console.log(error.message))
+    
+ 
 
-    },[url]);  
 
   return (
     <div className="weather">
@@ -28,21 +34,22 @@ function Weather() {
           <input
             placeholder="Enter Location"
             type="text"
-            value={location}
+            value={location}  
+            onKeyPress={searchLocation}         
             onChange={(e) => setLocation(e.target.value)}
           />
         </div>
         <div className="city">
-          <h2>Weather in {data.name}</h2>
+          <h2>Weather in </h2>
           <h3>18C</h3>
         </div>
 
         <div className="feels">
-          <h4>Humidity {data.main.temp} </h4>
+          <h4>Humidity  </h4>
         </div>
 
         <div className="feels">
-          <h4>Wind speed {data.wind.speed}</h4>
+          <h4>Wind speed </h4>
         </div>
       </div>
     </div>
