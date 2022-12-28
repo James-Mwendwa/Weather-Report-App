@@ -1,0 +1,13 @@
+.weather{
+    display: grid;
+    place-content: center;
+    margin-top: 50px;
+   
+}
+
+form > input {
+    padding: 10px;
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+}

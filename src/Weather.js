@@ -37,21 +37,21 @@ function Weather() {
         </div>
 
         <div className="city">
-          <h2>Weather in {location}</h2>
+          <h2>Weather in {weatherData.name}</h2>
           {weatherData.main ? (
-            <h3>Temperature {weatherData.main.temp}</h3>
+            <h3>Temperature : {weatherData.main.temp.toFixed()} °F</h3>
           ) : null}
         </div>
 
         <div className="feels">
           {weatherData.main ? (
-            <h4>Humidity {weatherData.main.humidity}</h4>
+            <h4>Humidity : {weatherData.main.humidity.toFixed()} %</h4>
           ) : null}
         </div>
 
         <div className="feels">
           {weatherData.main ? (
-            <h4>Wind speed {weatherData.wind.speed} </h4>
+            <h4>Wind speed : {weatherData.wind.speed.toFixed()} MPH</h4>
           ) : null}
         </div>
       </div>
